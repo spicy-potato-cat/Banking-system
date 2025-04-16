@@ -4,10 +4,38 @@
  */
 package root.oop_project;
 
+
 /**
  *
  * @author harsh
  */
-public class SavingsAccount {
+
+public abstract class AccountType extends BankAccount {
+    protected double interestRate;
+    protected double transactionRate;
+    protected AccountTypes accountType;
+
+    AccountType(AccountTypes accountType){
+        this.accountType=accountType;
+    }
     
+    public AccountTypes getAccounttype() {
+        return accountType;
+    }
+    
+    public void setaccountType(AccountTypes accountType){
+        this.accountType=accountType;
+    }
+    
+    public double getInterestRate() {
+        if(accountType==(AccountTypes.Current)){
+            return 0;
+        }
+        return interestRate;
+    }
+    
+    public void setInterestRate(double rate){
+        interestRate=rate;
+    }    
 }
+
