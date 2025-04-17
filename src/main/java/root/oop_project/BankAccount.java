@@ -8,17 +8,20 @@ package root.oop_project;
  *
  * @author harsh
  */
-public class BankAccount extends User{
-    private int accountNumber;
-    private AccountStatus accountStatus;
+public abstract class BankAccount extends User{
+    protected int accountNumber;
     protected double balance;
-    private User owner;
+    protected User owner;
+
+    public BankAccount(String name, String email, int id) {
+        super(name, email, id);
+    }
     
-    private void deposit(double amount){
+    protected void deposit(double amount){
         balance=balance+amount;
     }
     
-    private void withdraw(double amount){
+    protected void withdraw(double amount){
         if(amount>balance){
             System.out.println("Insufficient funds");
             return;
@@ -26,40 +29,30 @@ public class BankAccount extends User{
         balance=balance-amount;
     }
     
-    private void setBalance(double balance){
+    protected void setBalance(double balance){
         this.balance=balance;
     }
     
-    private double getBalance(){
+    protected double getBalance(){
         return balance;
     }
     
-    private void setAccountNumber(int accountNumber){
+    protected void setAccountNumber(int accountNumber){
         this.accountNumber=accountNumber;
     }
     
-    private double getAccountNumber(){
+    protected double getAccountNumber(){
         return accountNumber;
     }
+   
     
-    private void setaccountStatus(AccountStatus accountStatus){
-        this.accountStatus=accountStatus;
-    }
-    
-    private AccountStatus getaccountStatus(){
-        return accountStatus;
-    }
-    
-    private void setOwner(User owner){
+    protected void setOwner(User owner){
         this.owner=owner;
     }
     
-    private User getOwner(){
+    public User getOwner(){
         return owner;
     }
     
-    @Override 
-    public String toString() {
-        return ("Account Number: "+accountNumber+" Account Status: "+accountStatus+" Balance: "+balance+" Owner: "+owner);
-    }
+    
 }

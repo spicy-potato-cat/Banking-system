@@ -12,6 +12,11 @@ public class User {
     private String name, email;
     private int id;
     
+    public User(String name, String email,int id){
+        this.name=name;
+        this.email=email;
+        this.id=id;
+    }
     public void setId(int id){
         this.id=id;
     }
