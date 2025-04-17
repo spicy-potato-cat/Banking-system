@@ -8,29 +8,27 @@ package root.oop_project;
  *
  * @author harsh
  */
-public class Transaction extends Account{
+public class Transaction {
+    private Account fromAccount;
 
-    public Transaction(Account account) {
-        super(account.owner, account.accountType); 
-        this.accountNumber = account.accountNumber;
-        this.balance = account.balance;
-        this.interestRate = account.interestRate;
-        this.transactionRate = account.transactionRate;
+    public Transaction(Account fromAccount) {
+        this.fromAccount = fromAccount;
     }
- 
-        
-    public boolean transferFunds(double transferAmount,BankAccount toAccount){
-        if(transferAmount>balance){
+
+    public boolean transferFunds(double transferAmount, Account toAccount) {
+        if (transferAmount > fromAccount.balance) {
             System.out.println("Insufficient Funds");
             return false;
         }
-        if((transferAmount>200000) && (this.accountType==AccountTypes.Current)){
-            this.transactionRate=50;            
-        } else if((transferAmount>200000) && (this.accountType==AccountTypes.Savings)){
-            this.transactionRate=10;
+
+        if ((transferAmount > 200000) && (fromAccount.getAccountType() == AccountTypes.Current)) {
+            fromAccount.transactionRate = 50;
+        } else if ((transferAmount > 200000) && (fromAccount.getAccountType() == AccountTypes.Savings)) {
+            fromAccount.transactionRate = 10;
         }
-        this.balance-=transferAmount;
-        toAccount.balance+=transferAmount-transactionRate;
+
+        fromAccount.balance -= transferAmount;
+        toAccount.balance += transferAmount - fromAccount.transactionRate;
         return true;
     }
 }
